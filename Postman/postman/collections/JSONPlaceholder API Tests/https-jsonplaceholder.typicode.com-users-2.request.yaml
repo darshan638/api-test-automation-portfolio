@@ -1,0 +1,33 @@
+$kind: http-request
+name: https://jsonplaceholder.typicode.com/users
+description: ""
+url: https://jsonplaceholder.typicode.com/users
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"John Doe\",\r
+
+    \    \"email\": \"john.doesexample.com\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r
+
+      \    pm.response.to.have.status(201);\r
+
+      });\r
+
+      pm.test(\"Response echoes submitted name\",function (){\r
+
+      \    const body = pm.response.json();\r
+
+      \    pm.expect(body.name).to.eql(\"John Doe\");\r
+
+      });\r
+
+      \r\n"
+    language: text/javascript
+order: 4337743791116762

@@ -1,0 +1,20 @@
+$kind: http-request
+name: https://jsonplaceholder.typicode.com/users/9999
+description: ""
+url: https://jsonplaceholder.typicode.com/users/9999
+method: GET
+headers:
+  Accept: application/json
+  Content-Type: application/json
+body:
+  type: json
+  content: '{"title":"naruto","body":"Nothing in the POST body","userId":"100"}'
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 404\", function () {\r
+
+      \    pm.response.to.have.status(404);\r
+
+      });\r\n"
+    language: text/javascript
+order: 3835239880664263
